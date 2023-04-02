@@ -17,14 +17,7 @@ import axios from "axios";
 const ClientInfoForm = () => {
   const location = useLocation();
   const [client, setClient] = useState(null);
-  const [steps, setSteps] = useState([
-    { label: "", progressId: null, completed: false },
-    { label: "", progressId: null, completed: false },
-    { label: "", progressId: null, completed: false },
-    { label: "", progressId: null, completed: false },
-    { label: "", progressId: null, completed: false },
-    { label: "", progressId: null, completed: false },
-  ]);
+  const [steps, setSteps] = useState([]);
   const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -92,7 +85,7 @@ const ClientInfoForm = () => {
 
   return (
     <Box m="10px">
-      <Header title="Client Info" subtitle="Information of Selected Client" />
+      <Header title="Client Information" subtitle="Information of Selected Client" />
       <Box sx={{ display: "flex", alignItems: "center", mb: "20px" }}>
         <Box sx={{ marginRight: "20px" }}>
           <img
