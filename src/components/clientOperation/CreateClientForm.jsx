@@ -17,7 +17,7 @@ const CreateClientForm = ({ isOpen, onClose, onClientCreated }) => {
     const [address, setAddress] = useState("");
     const [clientPhoto, setClientPhoto] = useState(null); // state for the selected photo
 
-    const handleNameChange = (event) => {
+      const handleNameChange = (event) => {
         setName(event.target.value);
       };
     
