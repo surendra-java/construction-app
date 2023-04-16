@@ -5,18 +5,24 @@ import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
 import Invoices from "./scenes/invoices";
-import Clients from "./scenes/clients";
+
 import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
 import FAQ from "./scenes/faq";
-import ClientInfoForm from "./components/clientOperation/ClientInfoForm";
+
 import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
+
 import Sites from "./scenes/sites";
+import Clients from "./scenes/clients";
+import Engineers from "./scenes/engineer";
+
+import ClientInfoForm from "./components/clientOperation/ClientInfoForm";
 import SiteInfoForm from "./components/siteOperation/SiteInfoForm";
+import EngineerInfoForm from "./components/engineerOperation/EngineerInfoForm";
 
 
 function App() {
@@ -34,8 +40,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
-              <Route path="/clients" element={<Clients />} />
-              <Route path="/sites" element={<Sites />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />
               <Route path="/bar" element={<Bar />} />
@@ -43,11 +47,16 @@ function App() {
               <Route path="/line" element={<Line />} />
               <Route path="/faq" element={<FAQ />} />
               
+              <Route path="/clients" element={<Clients />} />
+              <Route path="/sites" element={<Sites />} />
+              <Route path="/engineers" element={<Engineers />} />
+
               <Route path="/geography" element={<Geography />} />
               <Route path="/ClientInfoForm" element={<ClientInfoForm />} />
               <Route path="/SiteInfoForm" element={<SiteInfoForm />} />
+              <Route path="/EngineerInfoForm" element={<EngineerInfoForm />} />
 
-
+              
               
               
             </Routes>
