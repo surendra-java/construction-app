@@ -15,6 +15,8 @@ import ClientInfoForm from "./components/clientOperation/ClientInfoForm";
 import Geography from "./scenes/geography";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
+import Sites from "./scenes/sites";
+import SiteInfoForm from "./components/siteOperation/SiteInfoForm";
 
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/team" element={<Team />} />
               <Route path="/clients" element={<Clients />} />
+              <Route path="/sites" element={<Sites />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />
               <Route path="/bar" element={<Bar />} />
@@ -42,6 +45,10 @@ function App() {
               
               <Route path="/geography" element={<Geography />} />
               <Route path="/ClientInfoForm" element={<ClientInfoForm />} />
+              <Route path="/SiteInfoForm" element={<SiteInfoForm />} />
+
+
+              
               
             </Routes>
           </main>
