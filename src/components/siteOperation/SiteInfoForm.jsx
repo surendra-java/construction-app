@@ -18,7 +18,12 @@ const SiteInfoForm = () => {
   const location = useLocation();
   const [site, setSite] = useState(null);
   const siteMasterId = new URLSearchParams(location.search).get("siteMasterId");
+
+  const [engineer, setEngineer] = useState(null);
+  //const engineerMasterId = new URLSearchParams(location.search).get("engineerMasterId");
+
   console.log("siteMasterId", siteMasterId)
+  
   useEffect(() => {
     axios
       .get(`http://localhost:8080/site-info?siteMasterId=${siteMasterId}`)
@@ -29,7 +34,20 @@ const SiteInfoForm = () => {
       .catch((error) => {
         console.error(error);
       });
+
+      axios
+      .get(`http://localhost:8080/allocated-engineer-info?siteMasterId=${siteMasterId}`)
+     
+      .then((response) => {
+        console.log("engineer response data: ", response.data);
+        setEngineer(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, [siteMasterId]);
+
+ 
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", mb: "20px" }}>
@@ -130,33 +148,27 @@ const SiteInfoForm = () => {
             flex: 1,
           }}
         >
-          <Header title="Associated Engineer" subtitle="Information of Selected Site" />
+          <Header title="Associated Engineer" subtitle="Information of Associated Engineer" />
           <Box sx={{ display: "flex", alignItems: "center", mb: "20px" }}>
             <Box sx={{ marginRight: "20px" }}>
               <img
-                src={`data:image/png;base64,${site && site.sitePhoto}`}
+                src={`data:image/png;base64,${engineer && engineer.engineerPhoto}`}
                 style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
               />
             </Box>
             <Box>
               <Typography variant="h4" component="h2" mb="10px">
-                {site && site.siteName}
+                {engineer && engineer.engineerName}
               </Typography>
               <Typography variant="body1" component="p" mb="10px">
-                Address: {site && site.siteAddress}
+                Address: {engineer && engineer.engineerAddress}
               </Typography>
 
               <Typography variant="body1" component="p" mb="10px">
-                Ward: {site && site.siteWard}
+                Contact Number: {engineer && engineer.engineerMobNbr}
               </Typography>
 
-              <Typography variant="body1" component="p" mb="10px">
-                City: {site && site.siteCity}
-              </Typography>
-
-              <Typography variant="body1" component="p" mb="10px">
-                Pin: {site && site.sitePin}
-              </Typography>
+             
             </Box>
           </Box>
         </Box>
