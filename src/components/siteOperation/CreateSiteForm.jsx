@@ -22,10 +22,24 @@ const CreateSiteForm = ({ isOpen, onClose, onSiteCreated }) => {
   const [client, setClientId] = useState("");
   const [allClientOptions, setAllClientOptions] = useState([]);
 
+  const [engineer, setEngineerMasterId] = useState("");
+  const [allEngineerOptions, setAllEngineerOptions] = useState([]);
+
+  const [supervisor, setSupervisorMasterId] = useState("");
+  const [allSupervisorOptions, setAllSupervisorOptions] = useState([]);
+
   
   
   const handleClineIdChange = (event) => {
     setClientId(event.target.value);
+  };
+
+  const handleEngineerMasterIdChange = (event) => {
+    setEngineerMasterId(event.target.value);
+  };
+
+  const handleSupervisorMasterIdChange = (event) => {
+    setSupervisorMasterId(event.target.value);
   };
 
   const handSiteNameChange = (event) => {
@@ -65,9 +79,35 @@ const CreateSiteForm = ({ isOpen, onClose, onSiteCreated }) => {
       });
    }, []);
 
+   useEffect(() => {
+    // fetch the progress options for the first dropdown
+    fetch("http://localhost:8080/engineer-all-info")
+      .then((response) => response.json())
+      .then((data) => {
+        setAllEngineerOptions(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+   }, []);
+
+   useEffect(() => {
+    // fetch the progress options for the first dropdown
+    fetch("http://localhost:8080/supervisor-all-info")
+      .then((response) => response.json())
+      .then((data) => {
+        setAllSupervisorOptions(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+   }, []);
+
   const handleSave = async () => {
     const formData = new FormData();
     formData.append("client", client);
+    formData.append("engineer", engineer);
+    formData.append("supervisor", supervisor);
     formData.append("siteName", siteName);
     formData.append("siteAddress", siteAddress);
     formData.append("siteWard", siteWard);
@@ -113,6 +153,38 @@ const CreateSiteForm = ({ isOpen, onClose, onSiteCreated }) => {
               value={option.clientId}
             >
               {option.clientName}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          select
+          label="Engineer Name"
+          margin="dense"
+          onChange={handleEngineerMasterIdChange}
+          fullWidth
+        >
+          {allEngineerOptions.map((option) => (
+            <MenuItem
+              key={option.engineerMasterId}
+              value={option.engineerMasterId}
+            >
+              {option.engineerName}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          select
+          label="Supervisor Name"
+          margin="dense"
+          onChange={handleSupervisorMasterIdChange}
+          fullWidth
+        >
+          {allSupervisorOptions.map((option) => (
+            <MenuItem
+              key={option.supervisorMasterId}
+              value={option.supervisorMasterId}
+            >
+              {option.supervisorName}
             </MenuItem>
           ))}
         </TextField>

@@ -19,10 +19,12 @@ import { ColorModeContext, useMode } from "./theme";
 import Sites from "./scenes/sites";
 import Clients from "./scenes/clients";
 import Engineers from "./scenes/engineer";
+import Supervisors from "./scenes/supervisors";
 
 import ClientInfoForm from "./components/clientOperation/ClientInfoForm";
 import SiteInfoForm from "./components/siteOperation/SiteInfoForm";
 import EngineerInfoForm from "./components/engineerOperation/EngineerInfoForm";
+import SupervisorInfoForm from "./components/supervisorOperation/SupervisorInfoForm";
 
 
 function App() {
@@ -50,11 +52,13 @@ function App() {
               <Route path="/clients" element={<Clients />} />
               <Route path="/sites" element={<Sites />} />
               <Route path="/engineers" element={<Engineers />} />
+              <Route path="/supervisors" element={<Supervisors />} />
 
               <Route path="/geography" element={<Geography />} />
               <Route path="/ClientInfoForm" element={<ClientInfoForm />} />
               <Route path="/SiteInfoForm" element={<SiteInfoForm />} />
               <Route path="/EngineerInfoForm" element={<EngineerInfoForm />} />
+              <Route path="/SupervisorInfoForm" element={<SupervisorInfoForm />} />
 
               
               

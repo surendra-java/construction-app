@@ -9,6 +9,7 @@ import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ClientssOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import SitesOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import EngineersOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import SupervisorsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
@@ -160,6 +161,13 @@ const Sidebar = () => {
               title="Engineers"
               to="/engineers"
               icon={<EngineersOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Supervisors"
+              to="/supervisors"
+              icon={<SupervisorsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
