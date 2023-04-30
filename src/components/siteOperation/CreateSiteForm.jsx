@@ -5,6 +5,7 @@ import {
   DialogActions,
   TextField,
   Button,
+  MenuItem,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 
@@ -16,7 +17,16 @@ const CreateSiteForm = ({ isOpen, onClose, onSiteCreated }) => {
   const [siteWard, setSiteWard] = useState("");
   const [siteCity, setSiteCity] = useState("");
   const [sitePin, setSitePin] = useState("");
-  const [sitePhoto, setSitePhoto] = useState(null); // state for the selected photo
+  const [sitePhoto, setSitePhoto] = useState(null); 
+
+  const [client, setClientId] = useState("");
+  const [allClientOptions, setAllClientOptions] = useState([]);
+
+  
+  
+  const handleClineIdChange = (event) => {
+    setClientId(event.target.value);
+  };
 
   const handSiteNameChange = (event) => {
     setSiteName(event.target.value);
@@ -43,8 +53,21 @@ const CreateSiteForm = ({ isOpen, onClose, onSiteCreated }) => {
     setSitePhoto(event.target.files[0]);
   };
 
+  useEffect(() => {
+    // fetch the progress options for the first dropdown
+    fetch("http://localhost:8080/client-all-info")
+      .then((response) => response.json())
+      .then((data) => {
+        setAllClientOptions(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+   }, []);
+
   const handleSave = async () => {
     const formData = new FormData();
+    formData.append("client", client);
     formData.append("siteName", siteName);
     formData.append("siteAddress", siteAddress);
     formData.append("siteWard", siteWard);
@@ -77,6 +100,22 @@ const CreateSiteForm = ({ isOpen, onClose, onSiteCreated }) => {
         <Header title="CREATE CLIENT" subtitle="Create a New Client Profile" />
       </DialogTitle>
       <DialogContent>
+      <TextField
+          select
+          label="Client Name"
+          margin="dense"
+          onChange={handleClineIdChange}
+          fullWidth
+        >
+          {allClientOptions.map((option) => (
+            <MenuItem
+              key={option.clientId}
+              value={option.clientId}
+            >
+              {option.clientName}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           autoFocus
           margin="dense"
