@@ -68,8 +68,9 @@ const CreateSiteForm = ({ isOpen, onClose, onSiteCreated }) => {
   };
 
   useEffect(() => {
+    
     // fetch the progress options for the first dropdown
-    fetch("http://localhost:8080/client-all-info")
+    fetch("http://localhost:8080/unallocated-client-all-info")
       .then((response) => response.json())
       .then((data) => {
         setAllClientOptions(data);
